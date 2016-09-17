@@ -15,10 +15,10 @@ foreach ($file_list as $file) {
   // TODO:
   // ディレクトリのパスのみを $dir_list に格納する。
   // その際、２つ以上連続した「/」は１つにまとめる。→ できない
-	if (preg_match("/\/.*\//",$file,$file_re)){
-	$dir_list[] = $file_re;
-	var_dump($dir_list);
-	}
+	$a = preg_replace("/\/+/","/",$file);
+	// var_dump($a);
+	$b = preg_replace("/\/[^\/]*$/","/",$a);
+	var_dump($b);
 }
 
 

@@ -5,21 +5,22 @@ $html = file_get_contents('data/site.html');
 // var_dump($html);
 
 // TODO: $html の中から <title>...</title> に囲まれた内容を取得する
-preg_match_all("/<title>(.*?)<\/title>/s", $html, $match);
+preg_match("/<title>(.*?)<\/title>/s", $html, $match);
 // var_dump($match);
-$title   = $match[1][0];
+$title = $match[1];
 
 
 // TODO: $html の中から <img id="logo" src="..." /> の src 属性の内容を取得する
-preg_match("/<img.*?src[[:space:]]{0,}=[[:space:]]{0,}[\"']{0,}(.*?[^\"'>[:space:]]{0,}.*?[^\"'>[:space:]]{0,}.*?)[\"']{0,}[[:space:]]{0,}.*?>/is", $html, $match);
+/* preg_match("/<img.*?src[[:space:]]{0,}=[[:space:]]{0,}[\"']{0,}(.*?[^\"'>[:space:]]{0,}.*?[^\"'>[:space:]]{0,}.*?)[\"']{0,}[[:space:]]{0,}.*?>/is", $html, $match); */
+preg_match("/<img id=\"logo\" src=\"(.*?)\"/", $html, $match);
 // var_dump($match);
-$src     = $match[1];
+$src = $match[1];
 
 
 // TODO: $html の中から <div id="content">...</div> に囲まれた内容を取得する
 preg_match("/<div id=\"content\">(.*?)<\/div>/s", $html, $match);
 // var_dump($match);
-$content = $match[0];
+$content =strip_tags($match[1]);
 
 
 ?>
